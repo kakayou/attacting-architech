@@ -5,9 +5,9 @@
 ### linux 操作系统中的线程
 通过如下命令查看linux 如何创建线程
 
-<code language=shell>
+```sbtshell
 man pthread_create
-</code>
+```
 
 <pre>
 NAME
