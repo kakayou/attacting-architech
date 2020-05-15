@@ -57,3 +57,4 @@ typedef struct{
 　　　　　　} pthread_attr_t; 
 
 ```
+**java 创建线程会调用操作心痛的 pthread，所以java线程和操作系统线程一一对应**
