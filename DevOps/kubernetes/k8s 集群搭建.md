@@ -38,9 +38,9 @@ kubernetes官方集群实践：https://www.kubernetes.org.cn/3096.html
 
 虚拟化软件:VMware15 pro
 
-Docker:docker-ce 19.03
+Docker:docker-ce 20.10.2
 
-K8S:1.15
+K8S:1.20
 
 
 
@@ -58,10 +58,9 @@ K8S:1.15
 
 | name              | IP              |
 | ----------------- | --------------- |
-| kubernetes-master | 192.168.202.131 |
-| kubernetes-node1  | 192.168.202.132 |
-| kubernetes-node2  | 192.168.202.133 |
-
+| k8s-master | 192.168.119.131 |
+| k8s-node1  | 192.168.119.132 |
+| k8s-node2  | 192.168.119.133 |
 
 
 虚拟机基本设置:
@@ -113,11 +112,19 @@ sudo apt-get -y update
 
 #安装docker-ce
 sudo apt-get -y install docker-ce
+
+# 镜像加速
+vim /etc/docker/daemon.json
+# 内容如下
+{
+  "registry-mirrors": ["http://hub-mirror.c.163.com", "https://docker.mirrors.ustc.edu.cn"]
+}
+# 重新加载某个服务的配置文件
+sudo systemctl daemon-reload
+# 重新启动 docker
+sudo systemctl restart docke
+
 ```
-
-配置docker镜像加速(参考Docker第一节课)
-
-
 
 ## 搭建Kubernetes集群
 
@@ -203,7 +210,6 @@ apt-get install -y kubelet kubeadm kubectl
 systemctl enable kubelet && systemctl start kubelet
 ```
 
-#注意：安装完最后会打印一个版本号，记住版本后面配置master的配置文件需要用到
 
 ### 配置Master
 
@@ -217,7 +223,7 @@ kubeadm config print init-defaults --kubeconfig ClusterConfiguration > kubeadm.y
 
 ```yaml
 #修改advertiseAddress:为master主机IP
-advertiseAddress: 192.168.202.128
+advertiseAddress: 192.168.119.131
 #因为有墙,把镜像源修改为国内的，比如阿里云
 imageRepository: registry.aliyuncs.com/google_containers
 #顺便配置calico的默认网段(后面网络配置会用到)
@@ -237,7 +243,7 @@ kubeadm config images pull --config kubeadm.yml
 
 ```shell
 #定了初始化时需要使用的配置文件，其中添加 --experimental-upload-certs 参数可以在后续执行加入节点时自动分发证书文件。追加的 tee kubeadm-init.log 用以输出日志
-kubeadm init --config=kubeadm.yml --experimental-upload-certs | tee kubeadm-init.log
+kubeadm init --config=kubeadm.yml --upload-certs | tee kubeadm-init.log
 ```
 
 5.配置kubectl(第四步结尾输出步骤)
@@ -276,7 +282,8 @@ kubectl get nodes
 安装完成kubernetes之后，把node加入到集群即可，加入节点的令牌从`kubeadm-init.log`文件可以获取到
 
 ```shell
-kubeadm join 192.168.202.128:6443 --token abcdef.0123456789abcdef     --discovery-token-ca-cert-hash sha256:783e4149509b878bb8b87bd69aa95e4468ae15c8d259c9be6e79db73289a4148
+kubeadm join 192.168.119.131:6443 --token abcdef.0123456789abcdef \
+    --discovery-token-ca-cert-hash sha256:702ea1c4bdc04cff8c02b4797450b81cb2364a9d09a418899f937907373f1bb1 
 ```
 
 在master主机验证节点是否加入到了集群
@@ -297,38 +304,21 @@ kubectl get pod -n kube-system -o wide
 
 
 
-在配置网络之前，因为之前设置的是动态获取IP地址，这里三台机器修改为静态IP和防止DNS配置文件被更改
+修改DNS及hosts
 
 ```shell
-#修改配置文件
-vim /etc/netplan/50-cloud-init.yaml
-
-#yml文件一定要主要空格
-network:
-    ethernets:
-        ens33:
-           addresses: [192.168.202.128/24]
-           gateway4: 192.168.202.2
-           nameservers:
-                addresses: [192.168.202.2]
-    version: 2
-
-#刷新配置
-netplan apply
-```
-
-
-
-修改DNS
-
-```shell
-#ubuntu18的dns配置文件是交给systemd-resolved这个服务管理的，有可能会被他覆盖我们自定的dns地址，所以先停止systemd-resolved的服务
-systemctl stop systemd-resolved
 
 #修改dns
 vim /etc/systemd/resolved.conf
 
 nameserver 8.8.8.8
+#修改hosts
+vim /etc/hosts
+#添加如下内容
+192.168.119.131 k8s-master
+192.168.119.133 k8s-node2
+192.168.119.134 k8s-node1
+
 ```
 
 
@@ -356,7 +346,8 @@ Calico 还提供网络安全规则的动态实施。使用 Calico 的简单策�
 ```shell
 #官方文档安装：https://docs.projectcalico.org/v3.7/getting-started/kubernetes/
 #在Master操作即可
-kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
+curl https://docs.projectcalico.org/v3.15/manifests/calico.yaml -O
+kubectl apply -f calico.yaml
 #验证是否成功
 kubectl get pods --all-namespaces
 ```

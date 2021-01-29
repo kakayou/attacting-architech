@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec0ca1a8-f1fc-4a74-bd3a-3c97d443ee65" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/java/jvm/JVM 类加载.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tensorflow/TensorFlow 的机器学习基础知识.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevOps/kubernetes/k8s 集群搭建.md" beforeDir="false" afterPath="$PROJECT_DIR$/DevOps/kubernetes/k8s 集群搭建.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/java 内存模型.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/java 内存模型.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +38,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Vue/image" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\attacting-architech" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -64,27 +76,110 @@
       <option name="project" value="LOCAL" />
       <updated>1589506159767</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="thread">
+      <created>1590718236133</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590718236133</updated>
+    </task>
+    <task id="LOCAL-00003" summary="thread">
+      <created>1590718277158</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590718277158</updated>
+    </task>
+    <task id="LOCAL-00004" summary="mysql">
+      <created>1598258873815</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1598258873816</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Vue">
+      <created>1603683703464</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1603683703465</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Vue">
+      <created>1603683875686</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1603683875686</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Vue">
+      <created>1603684645541</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603684645541</updated>
+    </task>
+    <task id="LOCAL-00008" summary="java">
+      <created>1604455662126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1604455662126</updated>
+    </task>
+    <task id="LOCAL-00009" summary="k8s">
+      <created>1611819408867</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611819408867</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="thread" />
-    <option name="LAST_COMMIT_MESSAGE" value="thread" />
+    <MESSAGE value="mysql" />
+    <MESSAGE value="Vue" />
+    <MESSAGE value="java" />
+    <MESSAGE value="k8s" />
+    <option name="LAST_COMMIT_MESSAGE" value="k8s" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="450" y="25" key="CommitChangelistDialog2" timestamp="1590718235424">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="726" y="-738" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611656517043">
+      <screen x="78" y="-1080" width="1842" height="1080" />
     </state>
-    <state x="563" y="-960" key="CommitChangelistDialog2/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1589506158937" />
-    <state x="450" y="25" key="CommitChangelistDialog2/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1590718235424" />
-    <state x="442" y="204" key="Vcs.Push.Dialog.v2" timestamp="1590718238950">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="726" y="-738" key="#com.intellij.fileTypes.FileTypeChooser/89.0.1447.864/78.-1080.1842.1080@78.-1080.1842.1080" timestamp="1611656517043" />
+    <state x="618" y="-1066" key="CommitChangelistDialog2" timestamp="1611819407910">
+      <screen x="78" y="-1080" width="1842" height="1080" />
     </state>
-    <state x="552" y="-823" key="Vcs.Push.Dialog.v2/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1589506161606" />
-    <state x="442" y="204" key="Vcs.Push.Dialog.v2/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1590718238950" />
-    <state x="626" y="-731" key="com.intellij.ide.util.TipDialog" timestamp="1589765589897">
+    <state x="563" y="-960" key="CommitChangelistDialog2/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1603683874970" />
+    <state x="450" y="11" key="CommitChangelistDialog2/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1604455661285" />
+    <state x="618" y="-1066" key="CommitChangelistDialog2/89.0.1447.864/78.-1080.1842.1080@78.-1080.1842.1080" timestamp="1611819407910" />
+    <state x="739" y="-805" key="FileChooserDialogImpl" timestamp="1603683526720">
       <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="626" y="-731" key="com.intellij.ide.util.TipDialog/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1589765589897" />
+    <state x="739" y="-805" key="FileChooserDialogImpl/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1603683526720" />
+    <state x="643" y="-1080" key="MarkdownNavigator.PasteImageDialog" timestamp="1603683567351">
+      <screen x="0" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="643" y="-1080" key="MarkdownNavigator.PasteImageDialog/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1603683567351" />
+    <state x="500" y="-898" key="SettingsEditor" timestamp="1610626800914">
+      <screen x="78" y="-1080" width="1842" height="1080" />
+    </state>
+    <state x="500" y="-898" key="SettingsEditor/89.0.1447.864/78.-1080.1842.1080@78.-1080.1842.1080" timestamp="1610626800914" />
+    <state x="608" y="-813" key="Vcs.Push.Dialog.v2" timestamp="1611819410906">
+      <screen x="78" y="-1080" width="1842" height="1080" />
+    </state>
+    <state x="552" y="-823" key="Vcs.Push.Dialog.v2/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1603683876990" />
+    <state x="442" y="204" key="Vcs.Push.Dialog.v2/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1604455664297" />
+    <state x="608" y="-813" key="Vcs.Push.Dialog.v2/89.0.1447.864/78.-1080.1842.1080@78.-1080.1842.1080" timestamp="1611819410906" />
+    <state x="679" y="-717" key="com.intellij.ide.util.TipDialog" timestamp="1611626002651">
+      <screen x="78" y="-1080" width="1842" height="1080" />
+    </state>
+    <state x="501" y="277" key="com.intellij.ide.util.TipDialog/0.0.1536.824/0.-1080.1920.1040@0.0.1536.824" timestamp="1604633548586" />
+    <state x="679" y="-717" key="com.intellij.ide.util.TipDialog/89.0.1447.864/78.-1080.1842.1080@78.-1080.1842.1080" timestamp="1611626002651" />
+    <state x="679" y="-749" key="git4idea.merge.GitPullDialog" timestamp="1610618703409">
+      <screen x="78" y="-1080" width="1842" height="1080" />
+    </state>
+    <state x="679" y="-749" key="git4idea.merge.GitPullDialog/89.0.1447.864/78.-1080.1842.1080@78.-1080.1842.1080" timestamp="1610618703409" />
   </component>
 </project>
