@@ -1,15 +1,4 @@
-JVM 底层存储
-HSDB
-
-MetaspaceObj Klass InstanceKlass ->  
-（非数组） 存储java类
-
-InstanceMirrorKlass -> Class 对象 （堆区）
-
-    InstanceRefKlass 引用
-
-ArrayKlass
-存储数组类
+JVM 底层类加载
 
 ## oop-kclass模型
 我们平时写的java类编译成.class文件，JVM加载.class文件，那么加载.class文件之后在JVM中就是oop-kclass（C++）模型形式存在的。JVM内部基于oop-klass模型分两部分描述一个java类,第一个模型是oop（ordinary object pointer,也即普通对象指针）,第二个模型是klass.
@@ -107,13 +96,8 @@ anewarray、checkcast、getfield、getstatic、instanceof、invokedynamic、invo
 
 ### 初始化
 
-常量池
-1. class 文件常量池
-2. 运行时常量池
+执行静态代码块，完成静态变量的赋值；静态字段、静态代码段，字节码层面会生成clinit方法；方法中语句的先后顺序与代码的编写顺序相关
 
 
-JVM 加载类是懒加载模式
 
-
-ubuntu
-jdk
+## HSDB
