@@ -28,7 +28,7 @@ klass则包含元数据和方法信息，用来描述Java类
 
 ![avatar](images/klass.png)
 
-- 普通的Java类在JVM中对应的是instanceKlass类的实例，再来说下它的三个子类
+- 普通的Java类（非数组）在JVM中对应的是instanceKlass类的实例，再来说下它的三个子类
     1. InstanceMirrorKlass：用于表示java.lang.Class，Java代码中获取到的Class对象，实际上就是这个C++类的实例，存储在堆区，学名镜像类
     2. InstanceRefKlass：用于表示java/lang/ref/Reference类的子类
     3. InstanceClassLoaderKlass：用于遍历某个加载器加载的类
