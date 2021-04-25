@@ -39,7 +39,9 @@ klass则包含元数据和方法信息，用来描述Java类
 > 那么为何要设计这样一个一分为二的对象模型呢?
 >> 因为HotSopt JVM的设计者不想让每个对象中都含有一个vtable（虚函数表），所以就把对象模型拆成klass和oop，其中oop中不含有任何虚函数，而klass就含有虚函数表，可以进行method dispatch。这个模型其实是参照的Strongtalk VM 底层的对象模型。
 
+## HSDB（Hotspot Debugger）
 
+[HSDB 使用](https://www.jianshu.com/p/073a9a603d79)
 
 ## 类的加载过程
 
@@ -100,7 +102,3 @@ anewarray、checkcast、getfield、getstatic、instanceof、invokedynamic、invo
 ### 初始化
 
 执行静态代码块，完成静态变量的赋值；静态字段、静态代码段，字节码层面会生成clinit方法；方法中语句的先后顺序与代码的编写顺序相关
-
-
-
-## HSDB
