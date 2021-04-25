@@ -1,7 +1,7 @@
 JVM 底层类加载
 
 ## oop-klass模型
-我们平时写的java类编译成.class文件，JVM加载.class文件，那么加载.class文件之后在JVM中就是oop-kclass（C++）模型形式存在的。JVM内部基于oop-klass模型分两部分描述一个java类,第一个模型是oop（ordinary object pointer,也即普通对象指针）,第二个模型是klass.
+我们平时写的java类编译成.class文件，JVM加载.class文件，那么加载.class文件之后在JVM中就是oop-klass（C++）模型形式存在的。JVM内部基于oop-klass模型分两部分描述一个java类,第一个模型是oop（ordinary object pointer,也即普通对象指针）,第二个模型是klass.
 
 
 ### oop
@@ -32,7 +32,7 @@ klass则包含元数据和方法信息，用来描述Java类
     1. InstanceMirrorKlass：用于表示java.lang.Class，Java代码中获取到的Class对象，实际上就是这个C++类的实例，存储在堆区，学名镜像类
     2. InstanceRefKlass：用于表示java/lang/ref/Reference类的子类
     3. InstanceClassLoaderKlass：用于遍历某个加载器加载的类
-- Java中的数组不是静态数据类型，是动态数据类型，即是运行期生成的，Java数组的元信息用ArrayKlass的子类来表示：
+- Java中的数组不是静态数据类型，是动态数据类型，即是运行时动态生成的，Java数组的元信息用ArrayKlass的子类来表示：
     1. TypeArrayKlass：用于表示基本类型的数组
     2. ObjArrayKlass：用于表示引用类型的数组
 
