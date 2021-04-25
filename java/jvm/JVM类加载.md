@@ -1,6 +1,6 @@
 JVM 底层类加载
 
-## oop-kclass模型
+## oop-klass模型
 我们平时写的java类编译成.class文件，JVM加载.class文件，那么加载.class文件之后在JVM中就是oop-kclass（C++）模型形式存在的。JVM内部基于oop-klass模型分两部分描述一个java类,第一个模型是oop（ordinary object pointer,也即普通对象指针）,第二个模型是klass.
 
 
@@ -23,8 +23,8 @@ typedef class     typeArrayOopDesc*            typeArrayOop;
 | objArrayOop  |表示引用类型数组对象|
 | typeArrayOop  |表示基本类型数组对象|
 
-### kclass
-kclass 模型
+### klass
+klass则包含元数据和方法信息，用来描述Java类
 
 ![avatar](images/klass.png)
 
@@ -35,6 +35,9 @@ kclass 模型
 - Java中的数组不是静态数据类型，是动态数据类型，即是运行期生成的，Java数组的元信息用ArrayKlass的子类来表示：
     1. TypeArrayKlass：用于表示基本类型的数组
     2. ObjArrayKlass：用于表示引用类型的数组
+
+> 那么为何要设计这样一个一分为二的对象模型呢?
+>> 因为HotSopt JVM的设计者不想让每个对象中都含有一个vtable（虚函数表），所以就把对象模型拆成klass和oop，其中oop中不含有任何虚函数，而klass就含有虚函数表，可以进行method dispatch。这个模型其实是参照的Strongtalk VM 底层的对象模型。
 
 
 
