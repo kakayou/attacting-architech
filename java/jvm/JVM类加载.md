@@ -29,7 +29,7 @@ klass则包含元数据和方法信息，用来描述Java类
 ![avatar](images/klass.png)
 
 - 普通的Java类（非数组）在JVM中对应的是instanceKlass类的实例，再来说下它的三个子类
-    1. InstanceMirrorKlass：用于表示java.lang.Class，Java代码中获取到的Class对象，实际上就是这个C++类的实例，存储在堆区，学名镜像类
+    1. InstanceMirrorKlass：用于表示java.lang.Class，Java代码中获取到的Class对象，实际上就是这个C++类的实例，存储在堆区，学名镜像类，静态属性就存储在镜像类中
     2. InstanceRefKlass：用于表示java/lang/ref/Reference类的子类
     3. InstanceClassLoaderKlass：用于遍历某个加载器加载的类
 - Java中的数组不是静态数据类型，是动态数据类型，即是运行时动态生成的，Java数组的元信息用ArrayKlass的子类来表示：
@@ -102,3 +102,92 @@ anewarray、checkcast、getfield、getstatic、instanceof、invokedynamic、invo
 ### 初始化
 
 执行静态代码块，完成静态变量的赋值；静态字段、静态代码段，字节码层面会生成clinit方法；方法中语句的先后顺序与代码的编写顺序相关
+
+
+## 实战
+`public class Test_1 {
+
+    public static void main(String[] args) {
+
+        System.out.printf(Test_1_B.str);
+
+    }
+
+}
+
+
+class Test_1_A {
+
+    public static String str = "A str";
+
+
+    static {
+
+        System.out.println("A Static Block");
+
+    }
+
+}
+
+
+class Test_1_B extends Test_1_A {
+
+    static {
+
+        System.out.println("B Static Block");
+
+    }
+
+}`
+
+Test_1_A
+![avatar](images/test_a.png)
+Test_1_B
+![avatar](images/test_b.png)
+
+静态变量str的值存放在StringTable中，镜像类中存放的是字符串的指针,str是类Test_1_A的静态属性，可以看到不会存储到子类Test_1_B的镜像类中.
+Hotspot借助另外的数据结构ConstantPoolCache，常量池类ConstantPool中有个属性_cache指向了这个结构。每一条数据对应一个类ConstantPoolCacheEntry。
+
+ConstantPoolCacheEntry在哪呢？在ConstantPoolCache对象后面，看代码
+\openjdk\hotspot\src\share\vm\oops\cpCache.hpp
+`ConstantPoolCacheEntry* base() const           {
+  return (ConstantPoolCacheEntry*)((address)this + in_bytes(base_offset()));
+}`
+
+这个公式的意思是ConstantPoolCache对象的地址加上ConstantPoolCache对象的内存大小
+ConstantPoolCache
+常量池缓存是为常量池预留的运行时数据结构。保存所有字段访问和调用字节码的解释器运行时信息。缓存是在类被积极使用之前创建和初始化的。每个缓存项在解析时被填充
+**如何读取**
+\openjdk\hotspot\src\share\vm\interpreter\bytecodeInterpreter.cpp
+
+`CASE(_getstatic):
+
+        {
+
+          u2 index;
+
+          ConstantPoolCacheEntry* cache;
+
+          index = Bytes::get_native_u2(pc+1);
+
+
+          // QQQ Need to make this as inlined as possible. Probably need to
+
+          // split all the bytecode cases out so c++ compiler has a chance
+
+          // for constant prop to fold everything possible away.
+
+
+          cache = cp->entry_at(index);
+
+          if (!cache->is_resolved((Bytecodes::Code)opcode)) {
+
+            CALL_VM(InterpreterRuntime::resolve_get_put(THREAD, (Bytecodes::Code)opcode),
+
+                    handle_exception);
+
+            cache = cp->entry_at(index);
+
+          }
+
+……`
